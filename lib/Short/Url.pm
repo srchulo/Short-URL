@@ -69,7 +69,11 @@ sub decode {
 		$i = $i * $base + $index;
 	}
 
-	return $i - $self->offset;
+    $i -= $self->offset;
+
+    Carp::croak "invalid string $s for offset @{[$self->offset]}. produces negative int: $i" if $i < 0;
+
+	return $i;
 }
 
 1;
@@ -129,8 +133,8 @@ __END__
  
 =head1 DESCRIPTION
 
-Short::URL can be used to help generate short, unique character string urls. It uses L<Bijection/"http://en.wikipedia.org/wiki/Bijection"> to
-create a one-to-one mapping from integers to strings in your alphabet, and from strings in your alphabet back to the original integer. An integer
+Short::URL can be used to help generate short, unique character string urls. It uses L<Bijection|http://en.wikipedia.org/wiki/Bijection> to
+create a one-to-one mapping from integers to strings over your alphabet, and from strings over your alphabet back to the original integer. An integer
 primary key in your database would be a good example of an integer you could use to generate a unique character string that maps uniquely to that row.
  
 =method alphabet
@@ -141,7 +145,7 @@ The alphabet that will be used for creating strings when mapping an integer to a
 
    [qw/a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
 
-All lower case letters, upper case letters, and digits 1-9.
+All lower case letters, upper case letters, and digits 0-9.
 
 =method encode
 
@@ -163,15 +167,16 @@ Takes a string made from your alphabet and returns the corresponding integer tha
 
     print "Encoded with shuffled alphabet: $encoded_with_shuffled_alphabet"; #prints 'dlu'
 
-Setting L</use_shuffled_alphabet> to 1 means that instead of using the more common alphabet stored in L</alphabet>, L<Short::URL> will use a shuffled alphabet.
-Note, this shuffled alphabet will be the same every time, so encoding and decoding will work even in different sessions of using L<Short::URL>. This can be 
+Setting L</use_shuffled_alphabet> to 1 means that instead of using the more common alphabet used for this algorithm that is stored in L</alphabet>, L<Short::URL> will use a shuffled alphabet.
+Note, this shuffled alphabet will be the same every time, so encoding and decoding will work even with the use_shuffled_alphabet set to 1 even in 
+different sessions of using L<Short::URL>. This can be 
 useful if for some reason you don't want people to know how many ids you have in your database. With the more standard alphabet it's clear when you are going
 up by one between strings, and thus also how many ids you have. When used in combination with L</offset>, it is a lot harder to track what string would correspond
 to what id in your databse, or how many ids you have in total. Below is the shuffled alphabet that is used:
 
     [qw/G w d A t H J 0 P o W C 6 3 y K 8 L u 7 X E O a e q 1 9 D c F x Z 5 M T N l z r i s j h B 4 b I f V Y Q g n S 2 m U k p v R/]
 
-The default for L</use_shuffled_alphabet> is undef.
+This is just a shuffled version of L</alphabet>. The default for L</use_shuffled_alphabet> is undef.
 
 =head1 SEE ALSO
 
