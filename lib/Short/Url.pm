@@ -9,7 +9,7 @@ has alphabet => (
     is => 'rw',
     isa => 'ArrayRef',
     default => sub {
-        [qw/a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9/]
+        [qw/a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
     },  
 );
 
@@ -17,7 +17,7 @@ has shuffled_alphabet => (
     is => 'ro',
     isa => 'ArrayRef',
     default => sub {
-        [qw/Q q F v j K L V g W S X P C I D B u z 6 i h w 4 H p 5 Z l b A r M E 1 a d c T R 9 7 x o t 3 J O 8 2 f U s N G Y n e m k y/]
+        [qw/G w d A t H J 0 P o W C 6 3 y K 8 L u 7 X E O a e q 1 9 D c F x Z 5 M T N l z r i s j h B 4 b I f V Y Q g n S 2 m U k p v R/]
     },  
 );
 
@@ -121,7 +121,7 @@ __END__
 
     my $encoded_with_shuffled_alphabet = $su->encode(10000);
 
-    print "Encoded with shuffled alphabet: $encoded_with_shuffled_alphabet"; #prints 'F7e'
+    print "Encoded with shuffled alphabet: $encoded_with_shuffled_alphabet"; #prints 'dlu'
 
     my $decoded_with_shuffled_alphabet = $su->decode(10000);
 
@@ -139,7 +139,7 @@ primary key in your database would be a good example of an integer you could use
 
 The alphabet that will be used for creating strings when mapping an integer to a string. The default alphabet is:
 
-   [qw/a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9/] 
+   [qw/a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
 
 All lower case letters, upper case letters, and digits 1-9.
 
@@ -161,7 +161,7 @@ Takes a string made from your alphabet and returns the corresponding integer tha
 
     my $encoded_with_shuffled_alphabet = $su->encode(10000);
 
-    print "Encoded with shuffled alphabet: $encoded_with_shuffled_alphabet"; #prints 'F7e'
+    print "Encoded with shuffled alphabet: $encoded_with_shuffled_alphabet"; #prints 'dlu'
 
 Setting L</use_shuffled_alphabet> to 1 means that instead of using the more common alphabet stored in L</alphabet>, L<Short::URL> will use a shuffled alphabet.
 Note, this shuffled alphabet will be the same every time, so encoding and decoding will work even in different sessions of using L<Short::URL>. This can be 
@@ -169,7 +169,7 @@ useful if for some reason you don't want people to know how many ids you have in
 up by one between strings, and thus also how many ids you have. When used in combination with L</offset>, it is a lot harder to track what string would correspond
 to what id in your databse, or how many ids you have in total. Below is the shuffled alphabet that is used:
 
-    [qw/Q q F v j K L V g W S X P C I D B u z 6 i h w 4 H p 5 Z l b A r M E 1 a d c T R 9 7 x o t 3 J O 8 2 f U s N G Y n e m k y/]    
+    [qw/G w d A t H J 0 P o W C 6 3 y K 8 L u 7 X E O a e q 1 9 D c F x Z 5 M T N l z r i s j h B 4 b I f V Y Q g n S 2 m U k p v R/]
 
 The default for L</use_shuffled_alphabet> is undef.
 
