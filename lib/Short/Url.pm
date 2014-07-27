@@ -96,7 +96,7 @@ sub encode {
     }   
 
     my $reversed_string = reverse $s;
-    reverse $reversed_string;
+    return $reversed_string;
 }
 
 sub decode { 
