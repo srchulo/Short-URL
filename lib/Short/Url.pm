@@ -43,7 +43,7 @@ has use_shuffled_alphabet => (
     default => undef,
 );
 
-has no_naughties => (
+has no_vowels => (
     is => 'rw',
     isa => 'Int',
     default => 0,
@@ -55,11 +55,17 @@ has offset => (
     default => 0,
 );
 
+has croak_on_error => (
+    is => 'rw',
+    isa => 'Int',
+    default => 1,
+);
+
 sub alphabet_in_use { 
     my ($self) = @_;
     my $alphabet;
 
-    if($self->no_naughties) {
+    if($self->no_vowels) {
         $alphabet = $self->use_shuffled_alphabet ? $self->clean_shuffled_alphabet : $self->clean_alphabet;
     }
     else {
@@ -73,6 +79,12 @@ sub encode {
     my ($self, $i) = @_; 
 
     $i += $self->offset;
+
+    if($i < 0) { 
+        Carp::croak "integer to encode must be nonnegative" if $self->croak_on_error;
+        return -1;
+    }
+
     return $self->alphabet_in_use->[0] if $i == 0;
 
     my $s = ''; 
@@ -83,7 +95,8 @@ sub encode {
         $i = int($i / $base);
     }   
 
-    reverse $s; 
+    my $reversed_string = reverse $s;
+    reverse $reversed_string;
 }
 
 sub decode { 
@@ -95,14 +108,18 @@ sub decode {
     
     for my $char (split //, $s) { 
         my ($index) = grep { $self->alphabet_in_use->[$_] eq $char } 0..$last_index;
-        Carp::croak "invalid character $char in $s" unless defined($index);
+
+        if(not defined($index)) {
+            Carp::croak "invalid character $char in $s" if $self->croak_on_error;
+            return -1;
+        }
         
         $i = $i * $base + $index;
     }
 
     $i -= $self->offset;
 
-    Carp::croak "invalid string $s for offset @{[$self->offset]}. produces negative int: $i" if $i < 0;
+    Carp::croak "invalid string $s for offset @{[$self->offset]}. produces negative int: $i" if $i < 0 and $self->croak_on_error;
 
     return $i;
 }
@@ -163,10 +180,10 @@ __END__
     print "Decoded with shuffled alphabet: $decoded_with_shuffled_alphabet"; #prints 10000
 
     #use no naughty words
-    $su->no_naughties(1);
+    $su->no_vowels(1);
 
     #or
-    my $su = Short::URL->new(no_naughties => 1);
+    my $su = Short::URL->new(no_vowels => 1);
 
     my $clean_encoded = $su->encode(7465182);
 
@@ -219,7 +236,7 @@ to what id in your databse, or how many ids you have in total. Below is the shuf
 
 This is just a shuffled version of L</alphabet>. The default for L</use_shuffled_alphabet> is undef.
 
-=method no_naughties
+=method no_vowels
 
 As pointed out L<here|http://stackoverflow.com/questions/742013/how-to-code-a-url-shortener/742047#comment25208796_742047>, there is the possibility of creating
 naughty words. For instance:
@@ -228,12 +245,12 @@ naughty words. For instance:
 
     print "Encoded naughty: $encoded\n"; #prints F_ck, where '_' is replaced with 'u'
 
-If you want to avoid this, you can set L</no_naughties> to 1:
+If you want to avoid this, you can set L</no_vowels> to 1:
 
-    $su->no_naughties(1);
+    $su->no_vowels(1);
 
     #or
-    my $su = Short::URL->new(no_naughties => 1);
+    my $su = Short::URL->new(no_vowels => 1);
 
 This uses a separate alphabet with no vowels in it (aeiou), so that no naughty words can be formed. If you also have L</use_shuffled_alphabet> set to 1, that will still be
 respected. L<Short::URL> will just use a clean version of the shuffled alphabet listed under L</use_shuffled_alphabet>. Below are the two clean alphabets:
@@ -243,6 +260,18 @@ respected. L<Short::URL> will just use a clean version of the shuffled alphabet 
 
     #clean_shuffled_alphabet
     [qw/G w d t H J 0 P W C 6 3 y K 8 L 7 X q 1 9 D c F x Z 5 M T N l z r s j h B 4 b f V Y Q g n S 2 m k p v R/]
+
+=method croak_on_error
+
+This method sets whether you want L<Short::URL> to L<Carp|/"croak"> on an error. 
+
+    #enable
+    $su->croak_on_error(1);
+
+    #disable
+    $su->croak_on_error(0);
+
+Default is 1. If L</croak_on_error> is set to false and there is an error, then L</encode> or L</decode> will return a negative number.
 
 =head1 SEE ALSO
 

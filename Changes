@@ -1,6 +1,10 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Changed no_naughties to no_vowels. Fixed issue where Template::Toolkit didn't handled returned reverse value properly.
+    Also, added croak_on_error.
+
+0.004     2014-07-26 18:24:52-07:00 America/Los_Angeles
     Added no_naughties to synopsis
 
 0.003     2014-07-26 18:17:56-07:00 America/Los_Angeles
