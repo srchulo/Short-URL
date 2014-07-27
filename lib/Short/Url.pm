@@ -56,24 +56,24 @@ sub encode {
 }
 
 sub decode { 
-	my ($self, $s) = @_;
-	
-	my $i = 0;
-	my $base = @{$self->alphabet_in_use};
-	my $last_index = $#{$self->alphabet_in_use};
-	
-	for my $char (split //, $s) { 
-		my ($index) = grep { $self->alphabet_in_use->[$_] eq $char } 0..$last_index;
-		Carp::croak "invalid character $char in $s" unless defined($index);
-		
-		$i = $i * $base + $index;
-	}
+    my ($self, $s) = @_;
+    
+    my $i = 0;
+    my $base = @{$self->alphabet_in_use};
+    my $last_index = $#{$self->alphabet_in_use};
+    
+    for my $char (split //, $s) { 
+        my ($index) = grep { $self->alphabet_in_use->[$_] eq $char } 0..$last_index;
+        Carp::croak "invalid character $char in $s" unless defined($index);
+        
+        $i = $i * $base + $index;
+    }
 
     $i -= $self->offset;
 
     Carp::croak "invalid string $s for offset @{[$self->offset]}. produces negative int: $i" if $i < 0;
 
-	return $i;
+    return $i;
 }
 
 1;
