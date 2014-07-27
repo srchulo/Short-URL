@@ -161,6 +161,16 @@ __END__
     my $decoded_with_shuffled_alphabet = $su->decode(10000);
 
     print "Decoded with shuffled alphabet: $decoded_with_shuffled_alphabet"; #prints 10000
+
+    #use no naughty words
+    $su->no_naughties(1);
+
+    #or
+    my $su = Short::URL->new(no_naughties => 1);
+
+    my $clean_encoded = $su->encode(7465182);
+
+    print "My clean word: $clean_encoded\n"; #prints 'ccgZn', instead of 'F_ck', where '_' is replaced with 'u'
  
 =head1 DESCRIPTION
 
@@ -216,7 +226,7 @@ naughty words. For instance:
 
     my $encoded = $su->encode(7465182);
 
-    print "Encoded naughty: $encoded\n"; #prints F_ck, where _ is replaced with u
+    print "Encoded naughty: $encoded\n"; #prints F_ck, where '_' is replaced with 'u'
 
 If you want to avoid this, you can set L</no_naughties> to 1:
 
@@ -228,8 +238,8 @@ If you want to avoid this, you can set L</no_naughties> to 1:
 This uses a separate alphabet with no vowels in it (aeiou), so that no naughty words can be formed. If you also have L</use_shuffled_alphabet> set to 1, that will still be
 respected. L<Short::URL> will just use a clean version of the shuffled alphabet listed under L</use_shuffled_alphabet>. Below are the two clean alphabets:
 
-   #clean_alphabet
-   [qw/b c d f g h j k l m n p q r s t v w x y z B C D F G H J K L M N P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
+    #clean_alphabet
+    [qw/b c d f g h j k l m n p q r s t v w x y z B C D F G H J K L M N P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
 
     #clean_shuffled_alphabet
     [qw/G w d t H J 0 P W C 6 3 y K 8 L 7 X q 1 9 D c F x Z 5 M T N l z r s j h B 4 b f V Y Q g n S 2 m k p v R/]

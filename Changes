@@ -1,6 +1,9 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Added no_naughties to synopsis
+
+0.003     2014-07-26 18:17:56-07:00 America/Los_Angeles
     Added no_naughties
 
 0.002     2014-07-26 17:10:58-07:00 America/Los_Angeles
