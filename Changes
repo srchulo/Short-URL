@@ -1,6 +1,9 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Removed pointles use List::Util line
+
+0.006     2014-07-26 23:29:44-07:00 America/Los_Angeles
     Fixed issue where reverse was used instead of return in encode.
 
 0.005     2014-07-26 22:59:48-07:00 America/Los_Angeles
