@@ -219,6 +219,23 @@ Takes an integer and encodes it into a unique string over your alphabet.
 
 Takes a string made from your alphabet and returns the corresponding integer that it maps to.
 
+=method offset
+
+    $su->offset(10000);
+    my $encoded_with_offset = $su->encode(0);
+     
+    print "Encoded with offset: $encoded_with_offset\n"; #prints unique string for 10000, 'cP6' instead of 'a'
+     
+    my $decoded_with_offset = $su->decode('cP6');
+     
+    print "Decoded with offset: $decoded_with_offset\n"; #prints 0 instead of 10000
+
+L</offset> allows you to shift all integers that you encode forward by a certain integer. Likewise, whenever you are decoding strings it will
+return the integer for that string by substracting your offset from what the original number would have been. Offset can be useful if you don't want people
+to know you have a small number of items by starting with a larger offset, or if you want them to have less of an idea what ids really correspond to what strings.
+When used in combination with L</use_shuffled_alphabet>, it is a lot harder to track what string would correspond
+to what id in your databse, or how many ids you have in total. 
+
 =method use_shuffled_alphabet
 
     $su->use_shuffled_alphabet(1);

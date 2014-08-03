@@ -1,6 +1,9 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Added offset to documentation
+
+0.009     2014-08-03 00:53:04-07:00 America/Los_Angeles
     Fixed some typos in Synopsis thanks to azawawi
 
 0.008     2014-08-02 19:44:53-07:00 America/Los_Angeles
