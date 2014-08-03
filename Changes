@@ -1,6 +1,9 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Fixed some typos in Synopsis thanks to azawawi
+
+0.008     2014-08-02 19:44:53-07:00 America/Los_Angeles
     Store alphabet_in_use instead of calling many times in loop
 
 0.007     2014-07-27 12:07:31-07:00 America/Los_Angeles
