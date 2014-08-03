@@ -151,13 +151,13 @@ __END__
     $su->alphabet([qw/1 2 3 a b c/]);
 
     #or when you create the Short::URL object
-    my $su = Short::URL(alphabet => [qw/1 2 3 a b c/]);
+    my $su = Short::URL->new(alphabet => [qw/1 2 3 a b c/]);
 
     #have an 'offset'. Meaning if you pass in integer $i, you get unique string for $i + offset
     $su->offset(10000);
 
     #or
-    my $su = Short::URL(offset => 10000);
+    my $su = Short::URL->new(offset => 10000);
 
     my $encoded_with_offset = $su->encode(0);
 
@@ -171,7 +171,7 @@ __END__
     $su->use_shuffled_alphabet(1);
 
     #or
-    my $su = Short::URL(use_shuffled_alphabet => 1);
+    my $su = Short::URL->new(use_shuffled_alphabet => 1);
 
     my $encoded_with_shuffled_alphabet = $su->encode(10000);
 
