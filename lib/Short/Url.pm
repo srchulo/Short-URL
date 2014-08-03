@@ -44,8 +44,8 @@ has use_shuffled_alphabet => (
 
 has no_vowels => (
     is => 'rw',
-    isa => 'Int',
-    default => 0,
+    isa => 'Any',
+    default => undef,
 );
 
 has offset => (
@@ -56,7 +56,7 @@ has offset => (
 
 has croak_on_error => (
     is => 'rw',
-    isa => 'Int',
+    isa => 'Any',
     default => 1,
 );
 
@@ -71,6 +71,7 @@ sub alphabet_in_use {
         $alphabet = $self->use_shuffled_alphabet ? $self->shuffled_alphabet : $self->alphabet;
     }
 
+    print "@$alphabet\n";
     return $alphabet;
 }
 
@@ -84,13 +85,14 @@ sub encode {
         return -1;
     }
 
-    return $self->alphabet_in_use->[0] if $i == 0;
+    my $alphabet = $self->alphabet_in_use;
+    return $alphabet->[0] if $i == 0;
 
     my $s = ''; 
-    my $base = @{$self->alphabet_in_use};
+    my $base = @{$alphabet};
 
     while($i > 0) {
-        $s .= $self->alphabet_in_use->[$i % $base];
+        $s .= $alphabet->[$i % $base];
         $i = int($i / $base);
     }   
 
@@ -102,11 +104,12 @@ sub decode {
     my ($self, $s) = @_;
     
     my $i = 0;
-    my $base = @{$self->alphabet_in_use};
-    my $last_index = $#{$self->alphabet_in_use};
+    my $alphabet = $self->alphabet_in_use;
+    my $base = @{$alphabet};
+    my $last_index = $#{$alphabet};
     
     for my $char (split //, $s) { 
-        my ($index) = grep { $self->alphabet_in_use->[$_] eq $char } 0..$last_index;
+        my ($index) = grep { $alphabet->[$_] eq $char } 0..$last_index;
 
         if(not defined($index)) {
             Carp::croak "invalid character $char in $s" if $self->croak_on_error;
@@ -174,7 +177,7 @@ __END__
 
     print "Encoded with shuffled alphabet: $encoded_with_shuffled_alphabet"; #prints 'dlu'
 
-    my $decoded_with_shuffled_alphabet = $su->decode(10000);
+    my $decoded_with_shuffled_alphabet = $su->decode('dlu');
 
     print "Decoded with shuffled alphabet: $decoded_with_shuffled_alphabet"; #prints 10000
 
