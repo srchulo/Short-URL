@@ -1,6 +1,9 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Removed print and fixed "databse" typo
+
+0.010     2014-08-03 11:48:15-07:00 America/Los_Angeles
     Added offset to documentation
 
 0.009     2014-08-03 00:53:04-07:00 America/Los_Angeles
