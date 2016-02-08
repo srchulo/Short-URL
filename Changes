@@ -1,6 +1,9 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    Added the package version.
+
+0.011     2014-08-18 11:55:49-05:00 America/Chicago
     Removed print and fixed "databse" typo
 
 0.010     2014-08-03 11:48:15-07:00 America/Los_Angeles
