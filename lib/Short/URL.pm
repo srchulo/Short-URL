@@ -1,8 +1,11 @@
 package Short::URL;
-use strict;
+
+use 5.008_005;
+our $VERSION = '0.014';
+
+use strictures 2;
 use Mouse;
 use Carp qw//;
-#ABSTRACT: Encodes and Decodes short urls by using Bijection
 
 has alphabet => (
     is => 'rw',
@@ -128,6 +131,10 @@ sub decode {
 1;
 
 __END__ 
+
+=head1 NAME
+
+Short::URL - Encodes and Decodes short urls by using Bijection
 
 =head1 SYNOPSIS
  
@@ -290,6 +297,19 @@ This method sets whether you want L<Short::URL> to L<Carp|/"croak"> on an error.
     $su->croak_on_error(0);
 
 Default is 1. If L</croak_on_error> is set to false and there is an error, then L</encode> or L</decode> will return a negative number.
+
+=head1 AUTHOR
+
+Adam Hopkins E<lt>srchulo@cpan.orgE<gt>
+
+=head1 COPYRIGHT
+
+Copyright 2019- Adam Hopkins
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 

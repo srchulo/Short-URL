@@ -1,3 +1,11 @@
 test.pl
 .build
 Short-URL-*
+/Short-URL-*
+/.build
+/_build_params
+/Build
+/Build.bat
+!Build/
+!META.json
+!LICENSE

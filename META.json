@@ -1,0 +1,75 @@
+{
+   "abstract" : "Encodes and Decodes short urls by using Bijection",
+   "author" : [
+      "Adam Hopkins <srchulo@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v3.1.4, CPAN::Meta::Converter version 2.150010",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "Short-URL",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples",
+         "author",
+         "builder"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "Module::Build::Tiny" : "0.035"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
+            "Test::Pod" : "1.41",
+            "Test::Spellunker" : "v0.2.7"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : "0",
+            "Mouse" : "0",
+            "perl" : "5.008005",
+            "strictures" : "0"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/srchulo/Short--URL/issues"
+      },
+      "homepage" : "https://github.com/srchulo/Short--URL",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/srchulo/Short--URL.git",
+         "web" : "https://github.com/srchulo/Short--URL"
+      }
+   },
+   "version" : "0.014",
+   "x_authority" : "cpan:SRCHULO",
+   "x_contributors" : [
+      "Adam Hopkins <SirChickenHair@srchulo-aire.local>",
+      "Adam Hopkins <srchulo@Adams-MacBook-Pro.local>",
+      "Adam Hopkins <violapiratejunky@gmail.com>",
+      "Ahmad M. Zawawi <ahmad.zawawi@gmail.com>",
+      "Mohammad S Anwar <mohammad.anwar@yahoo.com>"
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.97001",
+   "x_static_install" : 1
+}
