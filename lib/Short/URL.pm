@@ -4,12 +4,13 @@ use 5.008_005;
 our $VERSION = '0.014';
 
 use strictures 2;
-use Mouse;
+use Moo;
+use Types::Standard qw/ArrayRef Bool Int Str/;
 use Carp qw//;
 
 has alphabet => (
     is => 'rw',
-    isa => 'ArrayRef',
+    isa => ArrayRef[Str],
     default => sub {
         [qw/a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
     },  
@@ -17,7 +18,7 @@ has alphabet => (
 
 has clean_alphabet => (
     is => 'ro',
-    isa => 'ArrayRef',
+    isa => ArrayRef[Str],
     default => sub {
         [qw/b c d f g h j k l m n p q r s t v w x y z B C D F G H J K L M N P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9/]
     },  
@@ -25,7 +26,7 @@ has clean_alphabet => (
 
 has shuffled_alphabet => (
     is => 'ro',
-    isa => 'ArrayRef',
+    isa => ArrayRef[Str],
     default => sub {
         [qw/G w d A t H J 0 P o W C 6 3 y K 8 L u 7 X E O a e q 1 9 D c F x Z 5 M T N l z r i s j h B 4 b I f V Y Q g n S 2 m U k p v R/]
     },  
@@ -33,7 +34,7 @@ has shuffled_alphabet => (
 
 has clean_shuffled_alphabet => (
     is => 'ro',
-    isa => 'ArrayRef',
+    isa => ArrayRef[Str],
     default => sub {
         [qw/G w d t H J 0 P W C 6 3 y K 8 L 7 X q 1 9 D c F x Z 5 M T N l z r s j h B 4 b f V Y Q g n S 2 m k p v R/]
     },  
@@ -41,25 +42,25 @@ has clean_shuffled_alphabet => (
 
 has use_shuffled_alphabet => (
     is => 'rw',
-    isa => 'Any',
+    isa => Bool,
     default => undef,
 );
 
 has no_vowels => (
     is => 'rw',
-    isa => 'Any',
+    isa => Bool,
     default => undef,
 );
 
 has offset => (
     is => 'rw',
-    isa => 'Int',
+    isa => Int,
     default => 0,
 );
 
 has croak_on_error => (
     is => 'rw',
-    isa => 'Any',
+    isa => Bool,
     default => 1,
 );
 

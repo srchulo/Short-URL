@@ -1,4 +1,5 @@
 requires 'strictures';
 requires 'Carp';
-requires 'Mouse';
+requires 'Moo';
+requires 'Types::Standard';
 requires 'perl', '5.008';

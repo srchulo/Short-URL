@@ -1,6 +1,10 @@
 Revision history for Short::URL
 
 {{$NEXT}}
+    - Switched to using Dist::Milla for releases
+    - Switched to Moo
+
+0.013     2016-11-14 23:23:37-08:00 America/Los_Angeles
     Renamed Url.pm to URL.pm
 
 0.012     2016-02-07 18:56:38-08:00 America/Los_Angeles
