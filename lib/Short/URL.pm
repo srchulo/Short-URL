@@ -204,7 +204,9 @@ Short::URL can be used to help generate short, unique character string urls. It 
 create a one-to-one mapping from integers to strings over your alphabet, and from strings over your alphabet back to the original integer. An integer
 primary key in your database would be a good example of an integer you could use to generate a unique character string that maps uniquely to that row.
  
-=method alphabet
+=head1 METHODS
+
+=head2 alphabet
  
     $su->alphabet([qw/1 2 3 a b c/]);
 
@@ -214,19 +216,19 @@ The alphabet that will be used for creating strings when mapping an integer to a
 
 All lower case letters, upper case letters, and digits 0-9.
 
-=method encode
+=head2 encode
 
     my $encoded = $su->encode(1);
 
 Takes an integer and encodes it into a unique string over your alphabet.
 
-=method decode
+=head2 decode
 
     my $decoded = $su->decode('b');
 
 Takes a string made from your alphabet and returns the corresponding integer that it maps to.
 
-=method offset
+=head2 offset
 
     $su->offset(10000);
     my $encoded_with_offset = $su->encode(0);
@@ -243,7 +245,7 @@ to know you have a small number of items by starting with a larger offset, or if
 When used in combination with L</use_shuffled_alphabet>, it is a lot harder to track what string would correspond
 to what id in your database, or how many ids you have in total. 
 
-=method use_shuffled_alphabet
+=head2 use_shuffled_alphabet
 
     $su->use_shuffled_alphabet(1);
 
@@ -262,7 +264,7 @@ to what id in your databse, or how many ids you have in total. Below is the shuf
 
 This is just a shuffled version of L</alphabet>. The default for L</use_shuffled_alphabet> is undef.
 
-=method no_vowels
+=head2 no_vowels
 
 As pointed out L<here|http://stackoverflow.com/questions/742013/how-to-code-a-url-shortener/742047#comment25208796_742047>, there is the possibility of creating
 naughty words. For instance:
@@ -287,7 +289,7 @@ respected. L<Short::URL> will just use a clean version of the shuffled alphabet 
     #clean_shuffled_alphabet
     [qw/G w d t H J 0 P W C 6 3 y K 8 L 7 X q 1 9 D c F x Z 5 M T N l z r s j h B 4 b f V Y Q g n S 2 m k p v R/]
 
-=method croak_on_error
+=head2 croak_on_error
 
 This method sets whether you want L<Short::URL> to L<Carp|/"croak"> on an error. 
 

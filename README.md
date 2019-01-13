@@ -70,6 +70,10 @@ Short::URL can be used to help generate short, unique character string urls. It 
 create a one-to-one mapping from integers to strings over your alphabet, and from strings over your alphabet back to the original integer. An integer
 primary key in your database would be a good example of an integer you could use to generate a unique character string that maps uniquely to that row.
 
+# METHODS
+
+## alphabet
+
     $su->alphabet([qw/1 2 3 a b c/]);
 
 The alphabet that will be used for creating strings when mapping an integer to a string. The default alphabet is:
@@ -78,13 +82,19 @@ The alphabet that will be used for creating strings when mapping an integer to a
 
 All lower case letters, upper case letters, and digits 0-9.
 
+## encode
+
     my $encoded = $su->encode(1);
 
 Takes an integer and encodes it into a unique string over your alphabet.
 
+## decode
+
     my $decoded = $su->decode('b');
 
 Takes a string made from your alphabet and returns the corresponding integer that it maps to.
+
+## offset
 
     $su->offset(10000);
     my $encoded_with_offset = $su->encode(0);
@@ -100,6 +110,8 @@ return the integer for that string by substracting your offset from what the ori
 to know you have a small number of items by starting with a larger offset, or if you want them to have less of an idea what ids really correspond to what strings.
 When used in combination with ["use\_shuffled\_alphabet"](#use_shuffled_alphabet), it is a lot harder to track what string would correspond
 to what id in your database, or how many ids you have in total. 
+
+## use\_shuffled\_alphabet
 
     $su->use_shuffled_alphabet(1);
 
@@ -117,6 +129,8 @@ to what id in your databse, or how many ids you have in total. Below is the shuf
     [qw/G w d A t H J 0 P o W C 6 3 y K 8 L u 7 X E O a e q 1 9 D c F x Z 5 M T N l z r i s j h B 4 b I f V Y Q g n S 2 m U k p v R/]
 
 This is just a shuffled version of ["alphabet"](#alphabet). The default for ["use\_shuffled\_alphabet"](#use_shuffled_alphabet) is undef.
+
+## no\_vowels
 
 As pointed out [here](http://stackoverflow.com/questions/742013/how-to-code-a-url-shortener/742047#comment25208796_742047), there is the possibility of creating
 naughty words. For instance:
@@ -140,6 +154,8 @@ respected. [Short::URL](https://metacpan.org/pod/Short::URL) will just use a cle
 
     #clean_shuffled_alphabet
     [qw/G w d t H J 0 P W C 6 3 y K 8 L 7 X q 1 9 D c F x Z 5 M T N l z r s j h B 4 b f V Y Q g n S 2 m k p v R/]
+
+## croak\_on\_error
 
 This method sets whether you want [Short::URL](https://metacpan.org/pod/Short::URL) to [Carp](#croak) on an error. 
 
@@ -168,35 +184,3 @@ it under the same terms as Perl itself.
 
 - [http://stackoverflow.com/a/742047/834140](http://stackoverflow.com/a/742047/834140)
 - [https://gist.github.com/zumbojo/1073996](https://gist.github.com/zumbojo/1073996)
-
-# POD ERRORS
-
-Hey! **The above document had some coding errors, which are explained below:**
-
-- Around line 74:
-
-    Unknown directive: =method
-
-- Around line 84:
-
-    Unknown directive: =method
-
-- Around line 90:
-
-    Unknown directive: =method
-
-- Around line 96:
-
-    Unknown directive: =method
-
-- Around line 113:
-
-    Unknown directive: =method
-
-- Around line 132:
-
-    Unknown directive: =method
-
-- Around line 157:
-
-    Unknown directive: =method
