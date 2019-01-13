@@ -173,30 +173,30 @@ it under the same terms as Perl itself.
 
 Hey! **The above document had some coding errors, which are explained below:**
 
-- Around line 206:
+- Around line 74:
 
     Unknown directive: =method
 
-- Around line 216:
+- Around line 84:
 
     Unknown directive: =method
 
-- Around line 222:
+- Around line 90:
 
     Unknown directive: =method
 
-- Around line 228:
+- Around line 96:
 
     Unknown directive: =method
 
-- Around line 245:
+- Around line 113:
 
     Unknown directive: =method
 
-- Around line 264:
+- Around line 132:
 
     Unknown directive: =method
 
-- Around line 289:
+- Around line 157:
 
     Unknown directive: =method
