@@ -157,7 +157,7 @@ respected. [Short::URL](https://metacpan.org/pod/Short::URL) will just use a cle
 
 ## croak\_on\_error
 
-This method sets whether you want [Short::URL](https://metacpan.org/pod/Short::URL) to [Carp](#croak) on an error. 
+This method sets whether you want [Short::URL](https://metacpan.org/pod/Short::URL) to ["croak"](https://metacpan.org/pod/Carp) on an error.
 
     #enable
     $su->croak_on_error(1);
